@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte des Boîtes à Livres</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #333;
+            font-size: 1.8rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        #map {
+            height: 70vh;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaflet-popup-content {
+            font-size: 0.9rem;
+            text-align: left;
+            max-width: 250px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .popup-container {
+            padding-right: 5px;
+        }
+
+        .popup-container img {
+            width: 100%;
+            height: auto;
+            margin-top: 5px;
+            border-radius: 5px;
+            display: block;
+        }
+
+        #copyMessage {
+            display: none;
+            margin-top: 10px;
+            color: green;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            #map {
+                height: 60vh;
+            }
+        }
+
+        /* Modifications pour enlever le soulignement des liens dans les popups et leur redonner une couleur bleue */
+        .leaflet-popup-content a {
+            text-decoration: none;
+            color: #007bff; /* Couleur bleue */
+        }
+
+        .leaflet-popup-content a:hover {
+            color: #0056b3; /* Couleur bleue plus foncée lors du survol */
+        }
+    </style>
+</head>
+<body>
+    <h1>Carte des Boîtes à Livres</h1>
+    <p>📍 Cliquez sur un marqueur pour voir les informations d'une boîte.</p>
+
+    <div id="map"></div>
+    <p id="copyMessage">Lien copié dans le presse-papiers ! ✅</p>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        let map = L.map('map', { scrollWheelZoom: true });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        const bookBoxes = [
+            { 
+                lat: 45.75168907023338, 
+                lon: 4.827411774339555, 
+                address: "Place Carnot, face au laboratoire d'analyses.",
+                image: "https://static.wixstatic.com/media/93b4b8_e9908b18e70a4a5d93147988dd9b214f~mv2.jpg"
+            },
+            { 
+                lat: 45.75512141163479, 
+                lon: 4.831623145118341, 
+                address: "Square Widor, face au 38 sur Sala.",
+                image: "https://static.wixstatic.com/media/93b4b8_cce46ec7aead4e3ba64936d838ecc09e~mv2.jpg"
+            },
+            { 
+                lat: 45.74961159639328, 
+                lon: 4.82678969190455, 
+                address: "Gare Perrache, côté Rhône, 4e étage, jardins partagés.",
+                image: "https://static.wixstatic.com/media/93b4b8_52bc07f5ffcc4f79b6fdd402cfc674a2~mv2.jpg"
+            },
+            { 
+                lat: 45.74958539352674, 
+                lon: 4.826854069547046, 
+                address: "Gare Perrache, côté Rhône, 4e étage, jardins partagés.",
+                image: "https://static.wixstatic.com/media/93b4b8_52bc07f5ffcc4f79b6fdd402cfc674a2~mv2.jpg"
+            }
+        ];
+
+        let markersGroup = L.featureGroup();
+
+        bookBoxes.forEach(box => {
+            const popupContent = `
+                <div class="popup-container">
+                    <b>Boîte à Livres</b><br>
+                    <strong>Adresse :</strong> ${box.address}<br>
+                    <img src="${box.image}" alt="Boîte à livres"><br>
+                    <a href="https://www.google.com/maps/search/?api=1&query=${box.lat},${box.lon}" target="_blank">
+                        📍 Itinéraire - Cliquez ici
+                    </a>
+                </div>
+            `;
+
+            const marker = L.marker([box.lat, box.lon]).addTo(markersGroup)
+                .bindPopup(popupContent, { closeButton: true });
+        });
+
+        // Ajouter le groupe de marqueurs à la carte
+        markersGroup.addTo(map);
+
+        // Centrer la carte et ajuster le zoom pour afficher tous les marqueurs
+        map.fitBounds(markersGroup.getBounds());
+    </script>
+</body>
+</html>
