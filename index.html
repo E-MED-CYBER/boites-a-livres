@@ -25,22 +25,13 @@
             align-items: center;
             padding: 10px 20px;
             background-color: white;
-            border-radius: 10px;
-            position: relative;
+            border-radius: 10px; /* Ajout des arrondis au fond */
         }
-        /* Logo Ville de Lyon - Positionné en haut à droite */
-        .header img.ville-lyon {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            height: 60px; /* Ajustez la taille du logo Ville de Lyon */
+        .header img {
+            height: 80px; /* Logo Ville de Lyon plus petit */
         }
-        /* Logo Conseil de Quartier - Positionné en haut à gauche */
-        .header img.logo-quartier {
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            height: 180px; /* Ajustez la taille du logo Conseil de Quartier */
+        .header .logo-quartier {
+            height: 180px; /* Logo Conseil de Quartier plus grand */
         }
         .content {
             background-color: #E5E5E5;
@@ -76,12 +67,8 @@
         }
         /* Responsivité pour petits écrans */
         @media (max-width: 768px) {
-            .header img.ville-lyon {
-                height: 50px; /* Réduire la taille du logo Ville de Lyon sur mobile */
-            }
-
-            .header img.logo-quartier {
-                height: 150px; /* Réduire la taille du logo Conseil de Quartier sur mobile */
+            .header img {
+                height: 60px; /* Réduire la taille des logos sur mobile */
             }
 
             .content {
@@ -98,7 +85,7 @@
     <div class="container">
         <div class="header">
             <img class="logo-quartier" src="https://static.wixstatic.com/media/93b4b8_aec208db16514a999aed601584a6514f~mv2.jpg" alt="Conseils de Quartier Bellecour-Carnot">
-            <img class="ville-lyon" src="https://static.wixstatic.com/media/93b4b8_d2e1d3dc9f15494680ff96212a28abb3~mv2.jpg" alt="Ville de Lyon">
+            <img src="https://static.wixstatic.com/media/93b4b8_d2e1d3dc9f15494680ff96212a28abb3~mv2.jpg" alt="Ville de Lyon">
         </div>
         <div class="content">
             <h2>📍 Localisation des Boîtes à Livres - Lyon 2 📍</h2>
