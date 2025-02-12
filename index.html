@@ -65,10 +65,22 @@
             height: 500px;
             border-radius: 10px;
         }
+
+
+
+          /* Styles pour les titres h2 et h3 */
+        h2 {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        h3 {
+            font-size: 24px;
+            font-weight: bold;
+        }
         /* Responsivité pour petits écrans */
         @media (max-width: 768px) {
             .header img {
-                height: 60px; /* Réduire la taille des logos sur mobile */
+                height: 40px; /* Réduire la taille des logos sur mobile */
             }
 
             .content {
@@ -77,6 +89,14 @@
 
             iframe {
                 height: 300px;
+            }
+
+            h2 {
+                font-size: 22px; /* Réduit la taille du titre h2 sur mobile */
+            }
+
+            h3 {
+                font-size: 18px; /* Réduit la taille du titre h3 sur mobile */
             }
         }
     </style>
