@@ -27,7 +27,7 @@
         }
 
         #map {
-            height: 80vh; /* Augmentation de la hauteur de la carte */
+            height: 160vh; /* Hauteur de la carte */
             width: 100%;
             margin: 0 auto;
             border-radius: 8px;
@@ -68,10 +68,15 @@
 
             p {
                 font-size: 1rem;
+                padding: 0 10px; /* Ajouter un peu de padding pour éviter que le texte touche les bords */
             }
 
             #map {
-                height: 70vh; /* Réduction de la hauteur de la carte pour les petits écrans */
+                height: 120vh; /* Hauteur plus petite pour les petits écrans */
+            }
+
+            .leaflet-popup-content {
+                max-width: 200px; /* Réduire la largeur des popups pour les petits écrans */
             }
         }
 
@@ -154,3 +159,4 @@
     </script>
 </body>
 </html>
+
